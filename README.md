@@ -1,6 +1,13 @@
 # DaVinci Resolve Cheatsheet
 
-From https://alecaddd.com/davinci-resolve-ffmpeg-cheatsheet-for-linux/
+## FFMPEG Record screen and compressing the output
+
+```
+ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 output.mp4
+ffmpeg -i output.mp4 -vcodec libx265 -crf 28 -filter:v "setpts=0.5*PTS" -vf scale=-1:720 compressed.mp4
+```
+
+### Contents below taken from https://alecaddd.com/davinci-resolve-ffmpeg-cheatsheet-for-linux/
 
 
 ## Convert MP4 to MOV
