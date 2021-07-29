@@ -4,7 +4,13 @@
 
 ```
 ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 output.mp4
-ffmpeg -i output.mp4 -vcodec libx265 -crf 28 -filter:v "setpts=0.5*PTS" -vf scale=-1:720 compressed.mp4
+ffmpeg -i output.mp4 -vcodec libx265 -crf 28 -filter:v "setpts=0.5*PTS,scale=-1:720" compressed.mp4
+```
+
+## FFMPEG gif to mp4
+
+```
+ffmpeg -i input.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,setpts=0.33*PTS" -r 30 output.mp4
 ```
 
 ### Contents below taken from https://alecaddd.com/davinci-resolve-ffmpeg-cheatsheet-for-linux/
