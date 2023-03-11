@@ -7,6 +7,17 @@ ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0+0,0 output.mp4
 ffmpeg -i output.mp4 -vcodec libx265 -crf 28 -filter:v "setpts=0.5*PTS,scale=-1:720" compressed.mp4
 ```
 
+For compressing, cropping, and disabling audio
+
+```
+ffmpeg \
+   -i input.webm \
+   -vcodec libx265 -crf 26 \
+   -filter:v "setpts=1.0*PTS,crop=2560:1440:2560:0,scale=-1:1080" \
+   -an \
+   output.mp4
+```
+
 ## FFMPEG gif to mp4
 
 ```
