@@ -24,6 +24,12 @@ ffmpeg \
 ffmpeg -i input.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,setpts=0.33*PTS" -r 30 output.mp4
 ```
 
+## FFMPEG images to gif
+
+```
+ffmpeg -framerate 1 -i image_%03d.png -vf "scale=-1:360,fps=1,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+```
+
 ### Contents below taken from https://alecaddd.com/davinci-resolve-ffmpeg-cheatsheet-for-linux/
 
 
